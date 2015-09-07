@@ -29,9 +29,46 @@ public class TestMain {
 		});
 		sw.start();
 		
-		long a = 5L, b = 7L;
+		int target = 1000;
+		Stopwatch t = new Stopwatch();
+		double[] times = new double[target];
+		int temp;
 		
-		Maths.printOperators(a, b);
+		for(int i = 0; i<target; i++){
+			t.start();
+			temp = Maths.bitwiseAdd(i, i);
+			t.stop();
+			times[i] = t.toSeconds();
+			t.reset();
+		}
+		System.out.printf("bitwiseAdd() took %f seconds to run, averaging %f per call.\n", Maths.sum(times), Maths.average(times));
+		
+		for(int i = 0; i<target; i++){
+			t.start();
+			temp = i+i;
+			t.stop();
+			times[i] = t.toSeconds();
+			t.reset();
+		}
+		System.out.printf("+ took %f seconds to run, averaging %f per call\n\n", Maths.sum(times), Maths.average(times));
+		
+		for(int i = 0; i<target; i++){
+			t.start();
+			temp = Maths.bitwiseMultiply(i, i);
+			t.stop();
+			times[i] = t.toSeconds();
+			t.reset();
+		}
+		System.out.printf("bitwiseMultiply() took %f seconds to run, averaging %f per call.\n", Maths.sum(times), Maths.average(times));
+		
+		for(int i = 0; i<target; i++){
+			t.start();
+			temp = i*i;
+			t.stop();
+			times[i] = t.toSeconds();
+			t.reset();
+		}
+		System.out.printf("* took %f seconds to run, averaging %f per call\n", Maths.sum(times), Maths.average(times));
 		
 		sw.stop();
 		System.out.println("\nProgram took "+NumberFormat.getInstance().format(sw.getDeltaTime())+" nano second(s) to run or "+sw.toSeconds()+" seconds to run.");
