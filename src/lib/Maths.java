@@ -323,40 +323,6 @@ public class Maths {
     	return x>y ? x : y;
     }
     
-    public static double polynomialFactor(int co[]){
-    	if(co.length == 1){
-    		return co[0];
-    	}
-    	int[] p = factorsArray(Math.abs(co[co.length-1]));
-    	int[] q = factorsArray(Math.abs(co[0]));
-    	
-    	for(int i = 0; i < p.length; i++){
-    		for(int j = 0; j < q.length; j++){
-    			if(syntheticDivision(p[i]/q[j], co)[0] == 0){
-    				return p[i]/q[j];
-    			}else if(syntheticDivision(-p[i]/q[j], co)[0] == 0){
-    				return -p[i]/q[j];
-    			}
-    		}
-    	}
-    	
-    	return 0;
-    }
-    
-    public static double[] syntheticDivision(double divisor, int co[]){
-    	double sum = 0.0;
-    	
-    	List<Double> l = new ArrayList<Double>();
-    	
-    	for(int i = 0; i<co.length; i++){
-    		
-    		sum += Math.pow(divisor, i) * co[co.length-i-1];
-    		
-    	}
-    	l.add(sum);
-    	return toDoubleArray(l);
-    }
-    
     public static double[] toDoubleArray(List<Double> l){
     	double[] d = new double[l.size()];
     	for(int i = 0; i < l.size(); i++){
