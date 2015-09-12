@@ -8,6 +8,8 @@ import lib.Maths;
 
 public class RPF {
 	
+	private RPF(){}
+	
 	public static String solve(int... a){
 		if(a.length <= 2){
 			return "ERROR: 3 or more parameters must be entered.";
@@ -78,7 +80,7 @@ public class RPF {
         int inc = 1;
         if (f % 2 != 0)	inc = 2;
         List<Integer> li = new ArrayList<Integer>();
-        for (int i = 1; i <= Math.ceil( Math.sqrt(f) ); i=i+inc) {
+        for (int i = 1; i*i <= f; i=i+inc) {
             if (f % i == 0) {
                 li.add(i);
             }
